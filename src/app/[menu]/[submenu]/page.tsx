@@ -90,7 +90,7 @@ async function getData(path: string) {
         coverImg: `/cover-images/` + frontmatter.coverImg,
         href: `/${path}/${post}`,
       });
-    } catch (_) {}
+    } catch {}
   }
 
   return posts;

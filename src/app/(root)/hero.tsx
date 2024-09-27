@@ -60,9 +60,9 @@ export function Hero() {
           className="max-w-xl w-full font-medium text-gray-300/70"
           variants={itemVariants}
         >
-          LavaLearn is USC LavaLab's open-access curriculum, providing tech and
-          entrepreneurship resources, workshops, and fireside chats to the USC
-          community and the greater public.
+          LavaLearn is USC LavaLab&apos;s open-access curriculum, providing tech
+          and entrepreneurship resources, workshops, and fireside chats to the
+          USC community and the greater public.
         </motion.p>
       </motion.div>
       <div className="absolute bottom-12 opacity-80 w-full">
