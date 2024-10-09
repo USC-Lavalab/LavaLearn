@@ -1,11 +1,18 @@
 "use client";
 
 import { atom, useAtom } from "jotai";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ForwardedRef, forwardRef, useEffect } from "react";
 import LavaLearnLogoMark from "~/app/lavalearn-logomark.png";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
 import {
   HoverCard,
   HoverCardContent,
@@ -112,7 +119,7 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="max-w-[96rem] w-full flex items-center justify-between pl-8">
+      <div className="max-w-[96rem] w-full flex items-center justify-between px-6 md:pr-0">
         <Link href="/" className="h-full inline overflow-hidden flex-shrink-0">
           <Image
             priority
@@ -121,12 +128,52 @@ export function Navbar() {
             alt={"LavaLearn Logo"}
           />
         </Link>
-        <div className="flex gap-4 px-8">
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex gap-4 px-8">
           {menus.map((menu) => (
             <NavbarItem key={menu} menu={menu} />
           ))}
           <NavbarLink title="FIRESIDE CHATS" href={"fireside-chats"} />
           <NavbarLink title="ABOUT" href={"about"} />
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="flex md:hidden">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-2 rounded-md bg-background">
+                <Menu className="h-6 w-6" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56 mt-2 bg-white" align="end">
+              {menus.map((menu) => (
+                <div key={menu}>
+                  <DropdownMenuLabel>{menu.toUpperCase()}</DropdownMenuLabel>
+                  <div className="pl-2">
+                    {Object.entries(submenus).map(([title, href], i) => (
+                      <Link
+                        key={i}
+                        href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}
+                      >
+                        <DropdownMenuItem>
+                          <span>{title}</span>
+                        </DropdownMenuItem>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <Link href="/fireside-chats">
+                <DropdownMenuItem className="font-bold">
+                  FIRESIDE CHATS
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/about">
+                <DropdownMenuItem className="font-bold">ABOUT</DropdownMenuItem>
+              </Link>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </div>
