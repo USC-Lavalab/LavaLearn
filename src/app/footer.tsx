@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="w-full bg-black text-white px-8 py-16">
+    <footer className="w-full bg-black text-white px-6 py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl w-full mx-auto">
         <div>
           <p className="text-4xl font-serif">Stop Waiting, Start Building.</p>

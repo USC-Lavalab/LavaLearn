@@ -4,7 +4,7 @@ import readYamlFile from "~/lib/readYamlFile";
 import { cn } from "~/lib/utils";
 import { NavbarThemeController } from "../navbar";
 import { Hero } from "./hero";
-import { PostItem } from "./post-item";
+import { PostCard } from "./post-card";
 import { SectionHeader } from "./section-header";
 
 export default async function Home() {
@@ -18,14 +18,14 @@ export default async function Home() {
         <div
           key={i}
           className={cn(
-            "p-12 flex flex-col gap-8",
+            "py-12 px-6 flex flex-col gap-8",
             i % 2 === 0 ? "bg-black" : "bg-gray-900"
           )}
         >
           <SectionHeader>Get Started with {menu}</SectionHeader>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {data[menu].map((post, i) => (
-              <PostItem key={i} post={post} index={i} />
+              <PostCard key={i} post={post} index={i} />
             ))}
           </div>
         </div>

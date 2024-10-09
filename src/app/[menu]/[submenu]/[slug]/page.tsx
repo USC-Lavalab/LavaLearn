@@ -42,7 +42,7 @@ export default async function BlogPost({
             >
               {params.submenu}
             </a>
-            <h1 className="font-serif text-6xl md:text-7xl leading-tight">
+            <h1 className="font-serif text-5xl md:text-7xl leading-tight">
               {data.frontmatter.title}
             </h1>
             {data.frontmatter.author && (
@@ -53,7 +53,7 @@ export default async function BlogPost({
           </div>
         </div>
       </div>
-      <div className="mt-12 text-black px-8">
+      <div className="mt-12 text-black px-6">
         <div className="w-full max-w-xl mx-auto">
           <div className="space-y-6 leading-relaxed mb-24">
             <MDXContent

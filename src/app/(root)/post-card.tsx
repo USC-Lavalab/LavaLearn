@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 
 const MotionPost = motion.div;
 
-export function PostItem({
+export function PostCard({
   post,
   index,
 }: {

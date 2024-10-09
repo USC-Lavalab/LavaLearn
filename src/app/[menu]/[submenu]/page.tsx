@@ -1,8 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import { menus, submenus } from "~/lib/data";
 import readMarkdownContent from "~/lib/readMarkdownContent";
 import readYamlFile from "~/lib/readYamlFile";
+import PostCard from "./post-card";
 
 export default async function Submenu({
   params,
@@ -29,36 +28,16 @@ export default async function Submenu({
             >
               {menuTitle}
             </a>
-            <h1 className="font-serif text-6xl md:text-7xl leading-tight">
+            <h1 className="font-serif text-5xl md:text-7xl leading-tight">
               {submenuTitle}
             </h1>
           </div>
         </div>
       </div>
       <div className="my-20 text-black">
-        <div className="space-y-12 w-full max-w-5xl mx-auto px-8">
+        <div className="space-y-12 w-full max-w-5xl mx-auto px-6">
           {data.map((post, i) => (
-            <Link
-              href={post.href}
-              key={i}
-              className="flex flex-col md:flex-row gap-8 items-center"
-            >
-              <div className="w-full md:w-[40%] aspect-[3/2] relative flex-shrink-0">
-                <Image
-                  src={post.coverImg}
-                  alt={`Cover Image from ${post.title}`}
-                  className="object-cover rounded-lg"
-                  fill
-                />
-              </div>
-              <div className="space-y-4">
-                <h1 className="text-4xl font-serif font-bold text-primary">
-                  {post.title}
-                </h1>
-                <p className="text-lg opacity-75">{post.description}</p>
-                <p className="font-medium text-sm">Read More →</p>
-              </div>
-            </Link>
+            <PostCard key={i} post={post} />
           ))}
         </div>
       </div>
