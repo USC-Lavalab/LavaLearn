@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { CircleArrowDown } from "lucide-react";
 import Image from "next/image";
-import HeroImage from "~/app/hero-image.jpeg";
+import HeroImage from "~/app/hero-image.webp";
 import useScrollDetection from "~/lib/hooks/useScrollDetection";
 
 export function Hero() {
@@ -39,6 +39,7 @@ export function Hero() {
         <Image
           priority
           src={HeroImage}
+          placeholder="blur"
           fill
           className="opacity-30 relative object-cover"
           alt="LavaLab Demo Day"
