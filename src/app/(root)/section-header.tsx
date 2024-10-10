@@ -12,7 +12,7 @@ export function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
     <motion.h2
       ref={ref}
-      className="font-serif text-primary text-2xl"
+      className="font-serif text-2xl text-primary"
       initial={{ opacity: 0, y: -10 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
       transition={{

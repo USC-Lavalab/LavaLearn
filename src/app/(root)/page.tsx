@@ -2,6 +2,7 @@ import { menus, submenus } from "~/lib/data";
 import readMarkdownContent from "~/lib/readMarkdownContent";
 import readYamlFile from "~/lib/readYamlFile";
 import { cn } from "~/lib/utils";
+
 import { NavbarThemeController } from "../navbar";
 import { Hero } from "./hero";
 import { PostCard } from "./post-card";
@@ -15,15 +16,9 @@ export default async function Home() {
       <NavbarThemeController theme="black" />
       <Hero />
       {menus.map((menu, i) => (
-        <div
-          key={i}
-          className={cn(
-            "py-12 px-6 flex flex-col gap-8",
-            i % 2 === 0 ? "bg-black" : "bg-gray-900"
-          )}
-        >
+        <div key={i} className={cn("flex flex-col gap-8 px-6 py-12", i % 2 === 0 ? "bg-black" : "bg-gray-900")}>
           <SectionHeader>Get Started with {menu}</SectionHeader>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {data[menu].map((post, i) => (
               <PostCard key={i} post={post} index={i} />
             ))}
@@ -35,13 +30,10 @@ export default async function Home() {
 }
 
 async function getData() {
-  const posts: Record<
-    string,
-    { title: string; description: string; coverImg: string; href: string }[]
-  > = {};
+  const posts: Record<string, { title: string; description: string; coverImg: string; href: string }[]> = {};
 
   await Promise.all(
-    menus.map(async (menu) => {
+    menus.map(async menu => {
       posts[menu] = [];
 
       // Process submenus sequentially
@@ -54,9 +46,7 @@ async function getData() {
           const firstPost = postsList[0];
 
           const { frontmatter } = await readMarkdownContent(
-            `_posts/${menu
-              .split(" ")[0]
-              .toLowerCase()}/${submenu}/${firstPost}.mdx`
+            `_posts/${menu.split(" ")[0].toLowerCase()}/${submenu}/${firstPost}.mdx`
           );
 
           posts[menu].push({
@@ -66,10 +56,7 @@ async function getData() {
             href: `${menu.split(" ")[0].toLowerCase()}/${submenu}/${firstPost}`,
           });
         } catch (error) {
-          console.error(
-            `Error processing ${menu.toLowerCase()}/${submenu}:`,
-            error
-          );
+          console.error(`Error processing ${menu.toLowerCase()}/${submenu}:`, error);
           // Continue with the next iteration despite the error
         }
       }

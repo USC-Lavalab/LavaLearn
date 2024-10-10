@@ -1,41 +1,29 @@
 import { menus, submenus } from "~/lib/data";
 import readMarkdownContent from "~/lib/readMarkdownContent";
 import readYamlFile from "~/lib/readYamlFile";
+
 import PostCard from "./post-card";
 
-export default async function Submenu({
-  params,
-}: {
-  params: { menu: string; submenu: string };
-}) {
+export default async function Submenu({ params }: { params: { menu: string; submenu: string } }) {
   const data = await getData(`${params.menu}/${params.submenu}`);
 
-  const menuTitle = menus.find(
-    (v) => v.toLowerCase().split(" ")[0] === params.menu
-  );
-  const submenuTitle = Object.entries(submenus).find(
-    (v) => v[1] === params.submenu
-  )?.[0];
+  const menuTitle = menus.find(v => v.toLowerCase().split(" ")[0] === params.menu);
+  const submenuTitle = Object.entries(submenus).find(v => v[1] === params.submenu)?.[0];
 
   return (
     <>
-      <div className="bg-black px-4 pt-20 text-white overflow-hidden relative">
-        <div className="max-w-3xl w-full mx-auto relative">
-          <div className="text-center py-20 space-y-8">
-            <a
-              href={`/${params.menu}/${params.submenu}`}
-              className="uppercase opacity-70 tracking-wide"
-            >
+      <div className="relative overflow-hidden bg-black px-4 pt-20 text-white">
+        <div className="relative mx-auto w-full max-w-3xl">
+          <div className="space-y-8 py-20 text-center">
+            <a href={`/${params.menu}/${params.submenu}`} className="uppercase tracking-wide opacity-70">
               {menuTitle}
             </a>
-            <h1 className="font-serif text-5xl md:text-7xl leading-tight">
-              {submenuTitle}
-            </h1>
+            <h1 className="font-serif text-5xl leading-tight md:text-7xl">{submenuTitle}</h1>
           </div>
         </div>
       </div>
       <div className="my-20 text-black">
-        <div className="space-y-12 w-full max-w-5xl mx-auto px-6">
+        <div className="mx-auto w-full max-w-5xl space-y-12 px-6 md:px-8">
           {data.map((post, i) => (
             <PostCard key={i} post={post} />
           ))}
@@ -53,15 +41,11 @@ async function getData(path: string) {
     href: string;
   }[] = [];
 
-  const postsList = (await readYamlFile(
-    `_posts/${path}/index.yaml`
-  )) as string[];
+  const postsList = (await readYamlFile(`_posts/${path}/index.yaml`)) as string[];
 
   for (const post of postsList) {
     try {
-      const { frontmatter } = await readMarkdownContent(
-        `_posts/${path}/${post}.mdx`
-      );
+      const { frontmatter } = await readMarkdownContent(`_posts/${path}/${post}.mdx`);
 
       posts.push({
         title: frontmatter.title,

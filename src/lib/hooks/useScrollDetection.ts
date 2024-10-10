@@ -8,8 +8,7 @@ const useScrollDetection = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       setHasScrolled(scrollTop > 0);
       setScrollValue(scrollTop);
     };

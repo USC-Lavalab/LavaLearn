@@ -1,10 +1,12 @@
 "use client";
 
+import { ForwardedRef, forwardRef, useEffect } from "react";
+
 import { atom, useAtom } from "jotai";
 import { ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ForwardedRef, forwardRef, useEffect } from "react";
+
 import LavaLearnLogoMark from "~/app/lavalearn-logomark.png";
 import {
   DropdownMenu,
@@ -13,11 +15,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "~/components/ui/hover-card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "~/components/ui/hover-card";
 import { menus, submenus } from "~/lib/data";
 import useScrollDetection from "~/lib/hooks/useScrollDetection";
 import { cn } from "~/lib/utils";
@@ -35,32 +33,18 @@ const NavbarLink = forwardRef<
   const children = (
     <>
       <span>{title}</span>
-      {!href && (
-        <ChevronDown
-          className="relative top-[1px] ml-1 h-5 w-5"
-          aria-hidden="true"
-        />
-      )}
+      {!href && <ChevronDown className="relative top-[1px] ml-1 h-5 w-5" aria-hidden="true" />}
     </>
   );
 
   if (href)
     return (
-      <Link
-        ref={ref as ForwardedRef<HTMLAnchorElement>}
-        href={href}
-        className={navbarLinkStyles}
-        {...props}
-      >
+      <Link ref={ref as ForwardedRef<HTMLAnchorElement>} href={href} className={navbarLinkStyles} {...props}>
         {children}
       </Link>
     );
   return (
-    <div
-      ref={ref as ForwardedRef<HTMLDivElement>}
-      className={navbarLinkStyles}
-      {...props}
-    >
+    <div ref={ref as ForwardedRef<HTMLDivElement>} className={navbarLinkStyles} {...props}>
       {children}
     </div>
   );
@@ -80,7 +64,7 @@ function NavbarItem({ menu }: { menu: string }) {
             key={i}
             href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}
             className={cn(
-              "block select-none space-y-1 p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-primary cursor-pointer"
+              "block cursor-pointer select-none space-y-1 p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-primary"
             )}
           >
             <span className="text-sm font-medium leading-none">{title}</span>
@@ -110,28 +94,19 @@ export function Navbar() {
   return (
     <div
       className={cn(
-        "w-full h-20 flex py-4 justify-center fixed z-50 transition top-0 overflow-x-scroll",
+        "fixed top-0 z-50 flex h-20 w-full justify-center overflow-x-scroll py-4 transition",
         navbarTheme === "black" ? "text-white" : "text-black",
-        hasScrolled
-          ? `${
-              navbarTheme === "black" ? "bg-black/70" : "bg-white/80"
-            } backdrop-blur-md`
-          : "bg-transparent"
+        hasScrolled ? `${navbarTheme === "black" ? "bg-black/70" : "bg-white/80"} backdrop-blur-md` : "bg-transparent"
       )}
     >
-      <div className="max-w-[96rem] w-full flex items-center justify-between px-6 md:pr-0">
-        <Link href="/" className="h-full inline overflow-hidden flex-shrink-0">
-          <Image
-            priority
-            src={LavaLearnLogoMark}
-            className="h-full w-auto"
-            alt={"LavaLearn Logo"}
-          />
+      <div className="flex w-full max-w-[96rem] items-center justify-between px-6 md:pr-0">
+        <Link href="/" className="inline h-full flex-shrink-0 overflow-hidden">
+          <Image priority src={LavaLearnLogoMark} className="h-full w-auto" alt={"LavaLearn Logo"} />
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex gap-4 px-8">
-          {menus.map((menu) => (
+        <div className="hidden gap-4 px-8 md:flex">
+          {menus.map(menu => (
             <NavbarItem key={menu} menu={menu} />
           ))}
           <NavbarLink title="FIRESIDE CHATS" href={"fireside-chats"} />
@@ -142,20 +117,17 @@ export function Navbar() {
         <div className="flex md:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="p-2 rounded-md bg-background">
+              <button className="rounded-md bg-background p-2">
                 <Menu className="h-6 w-6" />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 mt-2 bg-white" align="end">
-              {menus.map((menu) => (
+            <DropdownMenuContent className="mt-2 w-56 bg-white" align="end">
+              {menus.map(menu => (
                 <div key={menu}>
                   <DropdownMenuLabel>{menu.toUpperCase()}</DropdownMenuLabel>
                   <div className="pl-2">
                     {Object.entries(submenus).map(([title, href], i) => (
-                      <Link
-                        key={i}
-                        href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}
-                      >
+                      <Link key={i} href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}>
                         <DropdownMenuItem>
                           <span>{title}</span>
                         </DropdownMenuItem>
@@ -165,9 +137,7 @@ export function Navbar() {
                 </div>
               ))}
               <Link href="/fireside-chats">
-                <DropdownMenuItem className="font-bold">
-                  FIRESIDE CHATS
-                </DropdownMenuItem>
+                <DropdownMenuItem className="font-bold">FIRESIDE CHATS</DropdownMenuItem>
               </Link>
               <Link href="/about">
                 <DropdownMenuItem className="font-bold">ABOUT</DropdownMenuItem>
