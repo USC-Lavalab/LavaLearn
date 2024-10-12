@@ -58,17 +58,26 @@ function NavbarItem({ menu }: { menu: string }) {
       <HoverCardTrigger asChild>
         <NavbarLink title={menu.split(" ")[0].toUpperCase()} />
       </HoverCardTrigger>
-      <HoverCardContent className="p-0" align="end">
+      <HoverCardContent className="p-1" align="end">
         {Object.entries(submenus).map(([title, href], i) => (
           <Link
             key={i}
-            href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}
-            className={cn(
-              "block cursor-pointer select-none space-y-1 p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-primary"
-            )}
+            href="/about"
+            className={
+              "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+            }
           >
-            <span className="text-sm font-medium leading-none">{title}</span>
+            <span className="font-medium">{title}</span>
           </Link>
+          // <Link
+          //   key={i}
+          //   href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}
+          //   className={cn(
+          //     "block cursor-pointer select-none space-y-1 rounded p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-primary"
+          //   )}
+          // >
+          //   <span className="text-sm font-medium leading-none">{title}</span>
+          // </Link>
         ))}
       </HoverCardContent>
     </HoverCard>
@@ -104,46 +113,52 @@ export function Navbar() {
           <Image priority src={LavaLearnLogoMark} className="h-full w-auto" alt={"LavaLearn Logo"} />
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden gap-4 px-6 md:flex">
-          {menus.map(menu => (
-            <NavbarItem key={menu} menu={menu} />
-          ))}
-          <NavbarLink title="FIRESIDE CHATS" href={"fireside-chats"} />
-          <NavbarLink title="ABOUT" href={"about"} />
-        </div>
+        <div className="flex px-6">
+          {/* Desktop Navigation */}
+          <div className="hidden gap-4 md:flex">
+            {menus.map(menu => (
+              <NavbarItem key={menu} menu={menu} />
+            ))}
+            <div className="hidden gap-4 lg:flex">
+              <NavbarLink title="FIRESIDE CHATS" href={"fireside-chats"} />
+              <NavbarLink title="ABOUT" href={"about"} />
+            </div>
+          </div>
 
-        {/* Mobile Navigation */}
-        <div className="flex md:hidden">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="rounded-md bg-background p-2">
-                <Menu className="h-6 w-6" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="mt-2 w-56 bg-white" align="end">
-              {menus.map(menu => (
-                <div key={menu}>
-                  <DropdownMenuLabel>{menu.toUpperCase()}</DropdownMenuLabel>
-                  <div className="pl-2">
-                    {Object.entries(submenus).map(([title, href], i) => (
-                      <Link key={i} href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}>
-                        <DropdownMenuItem>
-                          <span>{title}</span>
-                        </DropdownMenuItem>
-                      </Link>
-                    ))}
-                  </div>
+          {/* Mobile Navigation */}
+          <div className="flex lg:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="rounded-md bg-background p-2">
+                  <Menu className="h-6 w-6" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="mt-2 w-56 bg-white" align="end">
+                <div className="block md:hidden">
+                  {menus.map(menu => (
+                    <div key={menu}>
+                      <DropdownMenuLabel>{menu.toUpperCase()}</DropdownMenuLabel>
+                      <div className="pl-2">
+                        {Object.entries(submenus).map(([title, href], i) => (
+                          <Link key={i} href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}>
+                            <DropdownMenuItem>
+                              <span>{title}</span>
+                            </DropdownMenuItem>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-              <Link href="/fireside-chats">
-                <DropdownMenuItem className="font-bold">FIRESIDE CHATS</DropdownMenuItem>
-              </Link>
-              <Link href="/about">
-                <DropdownMenuItem className="font-bold">ABOUT</DropdownMenuItem>
-              </Link>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                <Link href="/fireside-chats">
+                  <DropdownMenuItem className="font-bold">FIRESIDE CHATS</DropdownMenuItem>
+                </Link>
+                <Link href="/about">
+                  <DropdownMenuItem className="font-bold">ABOUT</DropdownMenuItem>
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
     </div>
