@@ -33,7 +33,7 @@ export function Hero() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden bg-black py-48 text-center text-white">
+    <div className="relative w-full overflow-hidden bg-black py-36 text-center text-white md:py-48">
       <div className="absolute top-0 h-full w-full" style={{ marginTop: scrollValue / 2 }}>
         <Image
           priority

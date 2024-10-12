@@ -15,13 +15,16 @@ export default async function Home() {
     <>
       <NavbarThemeController theme="black" />
       <Hero />
+
       {menus.map((menu, i) => (
-        <div key={i} className={cn("flex flex-col gap-8 px-6 py-12", i % 2 === 0 ? "bg-black" : "bg-gray-900")}>
-          <SectionHeader>Get Started with {menu}</SectionHeader>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {data[menu].map((post, i) => (
-              <PostCard key={i} post={post} index={i} />
-            ))}
+        <div key={i} className={cn("px-6 py-12 md:px-8", i % 2 === 0 ? "bg-black" : "bg-gray-900")}>
+          <div className="mx-auto flex max-w-[80rem] flex-col gap-8">
+            <SectionHeader>Get Started with {menu}</SectionHeader>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {data[menu].map((post, i) => (
+                <PostCard key={i} post={post} index={i} />
+              ))}
+            </div>
           </div>
         </div>
       ))}

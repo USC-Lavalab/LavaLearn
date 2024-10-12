@@ -23,7 +23,7 @@ export default async function Submenu({ params }: { params: { menu: string; subm
         </div>
       </div>
       <div className="my-20 text-black">
-        <div className="mx-auto w-full max-w-5xl space-y-12 px-6 md:px-8">
+        <div className="mx-auto w-full max-w-5xl space-y-12 px-6">
           {data.map((post, i) => (
             <PostCard key={i} post={post} />
           ))}

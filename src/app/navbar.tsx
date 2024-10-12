@@ -105,7 +105,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden gap-4 px-8 md:flex">
+        <div className="hidden gap-4 px-6 md:flex">
           {menus.map(menu => (
             <NavbarItem key={menu} menu={menu} />
           ))}
