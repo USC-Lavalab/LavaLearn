@@ -99,7 +99,7 @@ export function Navbar() {
         hasScrolled ? `${navbarTheme === "black" ? "bg-black/70" : "bg-white/80"} backdrop-blur-md` : "bg-transparent"
       )}
     >
-      <div className="flex w-full max-w-[96rem] items-center justify-between px-6 md:pr-0">
+      <div className="flex w-full max-w-[96rem] items-center justify-between pl-6 md:pr-0">
         <Link href="/" className="inline h-full flex-shrink-0 overflow-hidden">
           <Image priority src={LavaLearnLogoMark} className="h-full w-auto" alt={"LavaLearn Logo"} />
         </Link>
