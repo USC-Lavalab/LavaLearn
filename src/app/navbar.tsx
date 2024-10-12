@@ -62,7 +62,7 @@ function NavbarItem({ menu }: { menu: string }) {
         {Object.entries(submenus).map(([title, href], i) => (
           <Link
             key={i}
-            href={href}
+            href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}
             className={
               "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
             }
