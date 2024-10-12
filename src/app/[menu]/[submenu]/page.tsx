@@ -58,3 +58,15 @@ async function getData(path: string) {
 
   return posts;
 }
+
+export async function generateMetadata({ params }: { params: { menu: string; submenu: string } }) {
+  const title =
+    Object.entries(submenus).find(v => v[1] === params.submenu)?.[0] +
+    " | " +
+    menus.find(v => v.toLowerCase().split(" ")[0] === params.menu) +
+    " | LavaLearn";
+
+  return {
+    title,
+  };
+}

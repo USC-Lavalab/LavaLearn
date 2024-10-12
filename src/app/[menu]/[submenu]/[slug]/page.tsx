@@ -80,3 +80,11 @@ async function getData(path: string) {
 
   return { content, frontmatter };
 }
+
+export async function generateMetadata({ params }: { params: { menu: string; submenu: string; slug: string } }) {
+  const data = await getData(`${params.menu}/${params.submenu}/${params.slug}`);
+
+  return {
+    title: data.frontmatter.title,
+  };
+}

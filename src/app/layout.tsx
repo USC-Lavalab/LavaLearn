@@ -11,6 +11,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>LavaLearn</title>
+      </head>
       <body className={`bg-white font-sans antialiased`}>
         <Navbar />
         <main>{children}</main>
