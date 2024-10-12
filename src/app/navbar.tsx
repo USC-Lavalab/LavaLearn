@@ -94,7 +94,7 @@ export function Navbar() {
   return (
     <div
       className={cn(
-        "sticky top-0 z-50 flex h-20 w-full justify-center py-4 transition",
+        "fixed top-0 z-50 flex h-20 w-full justify-center py-4 transition",
         navbarTheme === "black" ? "text-white" : "text-black",
         hasScrolled ? `${navbarTheme === "black" ? "bg-black/70" : "bg-white/80"} backdrop-blur-md` : "bg-transparent"
       )}
