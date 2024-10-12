@@ -62,22 +62,13 @@ function NavbarItem({ menu }: { menu: string }) {
         {Object.entries(submenus).map(([title, href], i) => (
           <Link
             key={i}
-            href="/about"
+            href={href}
             className={
               "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
             }
           >
             <span className="font-medium">{title}</span>
           </Link>
-          // <Link
-          //   key={i}
-          //   href={`/${menu.split(" ")[0].toLowerCase()}/${href}`}
-          //   className={cn(
-          //     "block cursor-pointer select-none space-y-1 rounded p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-primary"
-          //   )}
-          // >
-          //   <span className="text-sm font-medium leading-none">{title}</span>
-          // </Link>
         ))}
       </HoverCardContent>
     </HoverCard>
@@ -103,7 +94,7 @@ export function Navbar() {
   return (
     <div
       className={cn(
-        "fixed top-0 z-50 flex h-20 w-full justify-center overflow-x-scroll py-4 transition",
+        "sticky top-0 z-50 flex h-20 w-full justify-center py-4 transition",
         navbarTheme === "black" ? "text-white" : "text-black",
         hasScrolled ? `${navbarTheme === "black" ? "bg-black/70" : "bg-white/80"} backdrop-blur-md` : "bg-transparent"
       )}
