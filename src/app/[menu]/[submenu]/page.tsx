@@ -2,6 +2,7 @@ import { menus, submenus } from "~/lib/data";
 import readMarkdownContent from "~/lib/readMarkdownContent";
 import readYamlFile from "~/lib/readYamlFile";
 
+import HeroSection from "./hero";
 import PostCard from "./post-card";
 
 export default async function Submenu({ params }: { params: { menu: string; submenu: string } }) {
@@ -12,16 +13,7 @@ export default async function Submenu({ params }: { params: { menu: string; subm
 
   return (
     <>
-      <div className="relative overflow-hidden bg-black px-4 pt-20 text-white">
-        <div className="relative mx-auto w-full max-w-3xl">
-          <div className="space-y-8 py-20 text-center">
-            <a href={`/${params.menu}/${params.submenu}`} className="uppercase tracking-wide opacity-70">
-              {menuTitle}
-            </a>
-            <h1 className="font-serif text-5xl leading-tight md:text-7xl">{submenuTitle}</h1>
-          </div>
-        </div>
-      </div>
+      <HeroSection title={submenuTitle!} menuLink={`/${params.menu}/${params.submenu}`} menuTitle={menuTitle!} />
       <div className="my-20 text-black">
         <div className="mx-auto w-full max-w-5xl space-y-12 px-6">
           {data.map((post, i) => (
