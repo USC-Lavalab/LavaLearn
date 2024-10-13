@@ -94,15 +94,17 @@ export function Navbar() {
   return (
     <div
       className={cn(
-        "fixed top-0 z-50 flex h-20 w-full justify-center py-4 transition",
+        "fixed top-0 z-50 flex h-16 w-full justify-center py-2 transition md:h-20 md:py-4",
         navbarTheme === "black" ? "text-white" : "text-black",
         hasScrolled ? `${navbarTheme === "black" ? "bg-black/70" : "bg-white/80"} backdrop-blur-md` : "bg-transparent"
       )}
     >
       <div className="flex w-full max-w-[96rem] items-center justify-between pl-6 md:pr-0">
-        <Link href="/" className="inline h-full flex-shrink-0 overflow-hidden">
-          <Image priority src={LavaLearnLogoMark} className="h-full w-auto" alt={"LavaLearn Logo"} />
-        </Link>
+        <div className="h-full py-1">
+          <Link href="/" className="my-4 inline h-full flex-shrink-0 overflow-hidden">
+            <Image priority src={LavaLearnLogoMark} className="h-full w-auto" alt={"LavaLearn Logo"} />
+          </Link>
+        </div>
 
         <div className="flex px-6">
           {/* Desktop Navigation */}
