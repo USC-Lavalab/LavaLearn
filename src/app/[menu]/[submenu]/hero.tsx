@@ -33,7 +33,7 @@ export default function HeroSection({
           <a href={menuLink} className="uppercase tracking-wide opacity-70">
             {menuTitle}
           </a>
-          <h1 className="font-serif text-5xl leading-tight md:text-6xl">{title}</h1>
+          <h1 className="hyphens-auto font-serif text-5xl leading-tight md:text-6xl">{title}</h1>
 
           {/* Conditionally render the author */}
           {author && <p className="text-sm font-medium uppercase tracking-wider opacity-80">by {author}</p>}
