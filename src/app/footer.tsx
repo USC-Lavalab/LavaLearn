@@ -47,7 +47,7 @@ export function Footer() {
             {Object.entries(socials).map(([i, social]) => (
               <Link
                 key={i}
-                className="rounded bg-gray-500 p-2 text-black transition-colors duration-100 hover:bg-gray-200"
+                className="translate-y-[1px] rounded bg-gray-500 p-2 text-black transition duration-100 hover:top-0 hover:translate-y-0 hover:bg-gray-200"
                 href={social.url}
                 target="_blank"
               >
